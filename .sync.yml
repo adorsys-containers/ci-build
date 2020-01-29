@@ -1,0 +1,7 @@
+.github/workflows/ci.yaml:
+  checkoutTestApplications: true
+  env:
+    - DOCKER_IMAGE: adorsys/ci-build
+      TAG: full
+      DIR: full
+      SQUASH: 'latest'

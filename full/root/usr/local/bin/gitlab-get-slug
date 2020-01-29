@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -euo pipefail
+
+if [ ! -f /tmp/.gitlab-slug ]; then
+  MKTEMP=$(mktemp)
+
+  pip install python-gitlab
+
+  echo "[global]
+default = adorsys
+ssl_verify = true
+timeout = 5
+
+[adorsys]
+url = ${CI_PROJECT_URL%$CI_PROJECT_PATH}
+private_token = ${CI_API_TOKEN}
+api_version = 4" >> "${MKTEMP}"
+
+  GITLAB_SLUG=$(gitlab -c "${MKTEMP}" -o json -f name,slug project-environment list --project-id "${CI_PROJECT_ID}" --all \
+    | grep "\"dyn/${CI_COMMIT_REF_NAME}\"" | jq -r .slug)
+
+  echo "${GITLAB_SLUG}" > /tmp/.gitlab-slug
+
+  rm "${MKTEMP}"
+fi
+
+cat /tmp/.gitlab-slug

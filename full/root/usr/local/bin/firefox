@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ ! -x /tmp/.firefox/firefox/firefox ]; then
+  mkdir -p /tmp/.firefox
+  cd /tmp/.firefox
+  curl -fsSL "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US" | tar xj
+fi
+
+exec /tmp/.firefox/firefox/firefox "$@"
