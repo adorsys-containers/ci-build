@@ -1,0 +1,145 @@
+# This file is managed via github.com/adorsys-containers/config
+---
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+      - '.sync.yml'
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        env:
+          -
+            DIR: 'full'
+            DOCKER_IMAGE: 'adorsys/ci-build'
+            SQUASH: 'latest'
+            TAG: 'full'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - uses: actions/setup-python@v1
+        if: matrix.env.SQUASH
+        with:
+          node-version: '3.x'
+
+      - name: docker info
+        run: docker info
+
+      - name: Install dependencies
+        run: |
+          npm install -g dockerfilelint
+          curl -sL https://github.com/gdraheim/docker-copyedit/archive/v1.2.2036.tar.gz | tar xzf -  --wildcards --strip-components=1 */docker-copyedit.py
+        working-directory: ${{ matrix.env.DIR }}
+
+      - name: docker build
+        env: ${{ matrix.env }}
+        run: docker build --pull -t "${DOCKER_IMAGE}:${TAG}" .
+        working-directory: ${{ matrix.env.DIR }}
+      - name: Checkout Test Applications
+        uses: actions/checkout@v2
+        with:
+          repository: 'adorsys-containers/test-applications'
+          path: 'test-applications'
+
+      - name: Run tests
+        env: ${{ matrix.env }}
+        run: |
+          bash -xe "${{ matrix.env.DIR }}/tests/tests.sh"
+          npx dockerfilelint < "${{ matrix.env.DIR }}/Dockerfile"
+
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          path: "${{ matrix.env.DIR }}"
+          pattern: "*.sh"
+          exclude: "./.git/*"
+
+      - name: Squash Docker Image
+        if: matrix.env.SQUASH
+        env: ${{ matrix.env }}
+        run: |
+          pip3 install wheel docker-squash
+          docker tag "${DOCKER_IMAGE}:${TAG}" "${DOCKER_IMAGE}:presquashed"
+          docker-squash -t "${DOCKER_IMAGE}:squashed" "${DOCKER_IMAGE}:${TAG}"
+          docker tag "${DOCKER_IMAGE}:squashed" "${DOCKER_IMAGE}:${TAG}"
+
+      - name: Report Image Size
+        env: ${{ matrix.env }}
+        run: |
+          docker images "${DOCKER_IMAGE}"
+          docker history "${DOCKER_IMAGE}:${TAG}"
+
+      - name: docker login
+        if: github.ref == 'refs/heads/master'
+        run: |-
+          echo "${REGISTRY_PASSWORD}" | docker login --username "${REGISTRY_USERNAME}" --password-stdin
+          echo "${GITHUB_TOKEN}" | docker login --username '$GITHUB_ACTOR' --password-stdin docker.pkg.github.com
+        env:
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Image on DockerHub
+        # https://github.community/t5/GitHub-Actions/GitHub-Actions-branch-conditional/m-p/29794
+        if: github.ref == 'refs/heads/master'
+        env: ${{ matrix.env }}
+        run: |
+          docker tag "${DOCKER_IMAGE}:${TAG}" "docker.pkg.github.com/${GITHUB_REPOSITORY}/${DOCKER_IMAGE#*/}:${TAG}"
+          docker push "${DOCKER_IMAGE}:${TAG}"
+          docker push "docker.pkg.github.com/${GITHUB_REPOSITORY}/${DOCKER_IMAGE#*/}:${TAG}"
+
+      - name: Publish Image aliases on DockerHub
+        # https://github.community/t5/GitHub-Actions/GitHub-Actions-branch-conditional/m-p/29794
+        if: github.ref == 'refs/heads/master' && matrix.env.ALIASES
+        env: ${{ matrix.env }}
+        run: |
+          for ALIAS in ${ALIASES}; do
+            echo "Pushing tag aliases ${ALIAS}"
+
+            docker tag "${DOCKER_IMAGE}:${TAG}" "${DOCKER_IMAGE}:${ALIAS}"
+            docker tag "${DOCKER_IMAGE}:${TAG}" "docker.pkg.github.com/${GITHUB_REPOSITORY}/${DOCKER_IMAGE#*/}:${ALIAS}"
+
+            docker push "${DOCKER_IMAGE}:${ALIAS}"
+            docker push "docker.pkg.github.com/${GITHUB_REPOSITORY}/${DOCKER_IMAGE#*/}:${ALIAS}"
+          done
+
+      - name: Publish Image snapshosts on DockerHub
+        # https://github.community/t5/GitHub-Actions/GitHub-Actions-branch-conditional/m-p/29794
+        if: github.ref == 'refs/heads/master' && matrix.env.SNAPSHOT
+        env: ${{ matrix.env }}
+        run: |
+          if [ "$(date +%d)" -eq "1" ]; then
+            echo "Pushing snapshot tag $(date +%Y%m)"
+            
+            docker tag "${DOCKER_IMAGE}:${TAG}" "${DOCKER_IMAGE}:$(date +%Y%m)"
+            docker tag "${DOCKER_IMAGE}:${TAG}" "docker.pkg.github.com/${GITHUB_REPOSITORY}/${DOCKER_IMAGE#*/}:$(date +%Y%m)"
+            
+            docker push "${DOCKER_IMAGE}:$(date +%Y%m)"
+            docker push "docker.pkg.github.com/${GITHUB_REPOSITORY}/${DOCKER_IMAGE#*/}:$(date +%Y%m)"
+          fi
+
+      - name: Slack notification if pipeline failed
+        uses: 8398a7/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          author_name: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: github.ref == 'refs/heads/master' && failure()

@@ -1,0 +1,5 @@
+# This file is managed via github.com/adorsys-containers/config
+
+/.idea/
+*.iml
+
