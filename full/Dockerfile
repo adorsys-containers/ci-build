@@ -23,8 +23,8 @@ RUN microdnf install -y apr-devel openssl-devel java-1.8.0-openjdk-devel tar gzi
 RUN set -x \
     # https://github.com/infosiftr/tomcat/blob/5f1abae99c0b1ebbd4f020bc4b5696619d948cfd/7/jre8-alpine/Dockerfile
     && nativeBuildDir="$(mktemp -d)" \
-    && nativeVersion=$(curl -sSf "https://www-eu.apache.org/dist/tomcat/tomcat-connectors/native/" | sed -nE 's/.*<a href="([0-9]+\.[0-9]+.[0-9]+)\/">.*/\1/p' | tail -n1) \
-    && curl -sSf "https://www-eu.apache.org/dist/tomcat/tomcat-connectors/native/${nativeVersion}/source/tomcat-native-${nativeVersion}-src.tar.gz" | tar -zx -C "$nativeBuildDir" --strip-components=1 \
+    && nativeVersion=$(curl -sSfL "https://downloads.apache.org/tomcat/tomcat-connectors/native/" | sed -nE 's/.*<a href="([0-9]+\.[0-9]+.[0-9]+)\/">.*/\1/p' | tail -n1) \
+    && curl -sSfL "https://downloads.apache.org/tomcat/tomcat-connectors/native/${nativeVersion}/source/tomcat-native-${nativeVersion}-src.tar.gz" | tar -zx -C "$nativeBuildDir" --strip-components=1 \
     && export CATALINA_HOME="$PWD" \
     && cd "$nativeBuildDir/native" \
     && ./configure --with-apr=/usr/bin/apr-1-config \
