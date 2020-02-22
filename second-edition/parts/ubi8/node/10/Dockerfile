@@ -7,6 +7,10 @@ RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o 
         --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
       gcc-c++ make nodejs \
+      # Firefox
+      gtk3 \
+      # Chrome
+      libXt libX11-xcb libXScrnSaver dbus-glib nss alsa-lib \
     && npm install -g npm yarn \
     && npm cache clear --force \
     && microdnf clean all -y && rm -rf /var/cache/yum
