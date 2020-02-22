@@ -49,6 +49,8 @@ for FLAVOR in "${FLAVORS[@]}"; do
     fi
   fi
 
+  sed -i "" 1d "generated/${FLAVOR}/Dockerfile"
+  sed -i "" 1d "generated/${FLAVOR}/tests/tests.sh"
   chmod +x "generated/${FLAVOR}/tests/tests.sh"
 
   {
