@@ -15,8 +15,6 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" node --version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" npm --version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" yarn --version
 
-chmod -R 777 "$(git rev-parse --show-toplevel)/test-applications/"
-
 # Test node package managers
 docker run --rm "${DOCKER_IMAGE}:${TAG}" npm install iconv
 docker run --rm "${DOCKER_IMAGE}:${TAG}" yarn add iconv
@@ -30,5 +28,5 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install puppeteer-firefox 
 
 # Test Headless chrome via angular
 docker run --rm -eCI=1 -v "$(git rev-parse --show-toplevel)/test-applications/js/example-app/":/opt/app-root/src/:cached "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install && npx ng test --watch=false --code-coverage --browsers ChromeHeadlessNoSandbox'
-docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'node --version | grep -q "node v12"'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'node --version | grep -q "v12"'
 

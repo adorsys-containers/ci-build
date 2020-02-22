@@ -3,8 +3,6 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" node --version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" npm --version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" yarn --version
 
-chmod -R 777 "$(git rev-parse --show-toplevel)/test-applications/"
-
 # Test node package managers
 docker run --rm "${DOCKER_IMAGE}:${TAG}" npm install iconv
 docker run --rm "${DOCKER_IMAGE}:${TAG}" yarn add iconv
