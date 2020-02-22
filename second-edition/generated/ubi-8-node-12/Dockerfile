@@ -62,7 +62,7 @@ RUN echo -e '[centos-8-baseos]\nname=CentOS-$releasever - BaseOS\nbaseurl=http:/
         --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
       gcc-c++ make nodejs \
-    && npm install -g npm yarn
+    && npm install -g npm yarn \
     && npm cache clear --force \
     && microdnf clean all -y && rm -rf /var/cache/yum
 
