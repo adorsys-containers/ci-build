@@ -33,7 +33,14 @@ We try to avoid version pinning. Prepare to always get the latest version.
 | ---- | ----------- | ---- |
 | latest | alias of full | [![](https://images.microbadger.com/badges/image/adorsys/ci-build.svg)](https://microbadger.com/images/adorsys/ci-build) |
 | full | includes browser | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:full.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| YYYYMM | Monthly Snapshots | - |
+| ubi-8-java-8 | UBI 8 based with Java 8 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-java-8.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| ubi-8-java-11 | UBI 8 based with Java 11 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-java-11.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| ubi-8-node-10 | UBI 8 based with NodeJS 10 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-node-8.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| ubi-8-node-12 | UBI 8 based with NodeJS 12 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-node-10.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| ubi-8-java-8-node-10 | UBI 8 based with Java 8 + NodeJS 10 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-java-8-node-10.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| ubi-8-java-11-node-10 | UBI 8 based with Java 11 + NodeJS 10 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-java-11-node-10.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| ubi-8-java-8-node-12 | UBI 8 based with Java 8 + NodeJS 12 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-java-8-node-12.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| ubi-8-java-11-node-12 | UBI 8 based with Java 11 + NodeJS 12 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:ubi-8-java-11-node-12.svg)](https://microbadger.com/images/adorsys/ci-build) |
 
 ## CI Examples
 
