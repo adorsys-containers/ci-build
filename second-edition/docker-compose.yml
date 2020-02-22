@@ -1,3 +1,4 @@
+version: '3'
 services:
   ubi-8-java-8:
     image: adorsys/ci-build:ubi-8-java-8

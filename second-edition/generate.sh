@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "version: 3" > docker-compose.yml
-echo "services:" > docker-compose.yml
+echo "version: '3'" > docker-compose.yml
+echo "services:" >> docker-compose.yml
 
 FLAVORS=(
   "ubi-8-java-8"
@@ -33,6 +33,7 @@ for FLAVOR in "${FLAVORS[@]}"; do
     if [[ "${FLAVOR}" =~ java-([0-9]+) ]]; then
       JAVA_VERSION="${BASH_REMATCH[1]}"
       cat "parts/ubi${UBI_VERSION}/java/${JAVA_VERSION}/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
+      cat "parts/ubi${UBI_VERSION}/java/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
       cat "parts/ubi${UBI_VERSION}/java/${JAVA_VERSION}/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
       echo >> "generated/${FLAVOR}/Dockerfile"
       echo >> "generated/${FLAVOR}/tests/tests.sh"
@@ -41,6 +42,7 @@ for FLAVOR in "${FLAVORS[@]}"; do
     if [[ "${FLAVOR}" =~ node-([0-9]+) ]]; then
       NODE_VERSION="${BASH_REMATCH[1]}"
       cat "parts/ubi${UBI_VERSION}/node/${NODE_VERSION}/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
+      cat "parts/ubi${UBI_VERSION}/node/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
       cat "parts/ubi${UBI_VERSION}/node/${NODE_VERSION}/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
       echo >> "generated/${FLAVOR}/Dockerfile"
       echo >> "generated/${FLAVOR}/tests/tests.sh"
