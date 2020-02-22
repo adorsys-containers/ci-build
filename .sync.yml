@@ -3,7 +3,7 @@
   env:
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: legacy
-      DIR: legacy
+      DIR: legacy/full
       SQUASH: 'true'
       ALIASES: 'full latest'
     - DOCKER_IMAGE: adorsys/ci-build
