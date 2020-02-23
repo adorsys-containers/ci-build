@@ -2,39 +2,31 @@
   checkoutTestApplications: true
   env:
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: legacy
-      DIR: legacy/full
+      TAG: full
+      DIR: full
+      ALIASES: 'latest'
       SQUASH: 'true'
-      ALIASES: 'full latest'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-java-8
       DIR: second-edition/generated/ubi-8-java-8
-      SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-java-11
       DIR: second-edition/generated/ubi-8-java-11
-      SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-node-10
       DIR: second-edition/generated/ubi-8-node-10
-      SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-node-12
       DIR: second-edition/generated/ubi-8-node-12
-      SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-java-8-node-10
       DIR: second-edition/generated/ubi-8-java-8-node-10
-      SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-java-11-node-10
       DIR: second-edition/generated/ubi-8-java-11-node-10
-      SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-java-8-node-12
       DIR: second-edition/generated/ubi-8-java-8-node-12
-      SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: ubi-8-java-11-node-12
       DIR: second-edition/generated/ubi-8-java-11-node-12
-      SQUASH: 'true'

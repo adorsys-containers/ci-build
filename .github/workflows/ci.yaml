@@ -20,50 +20,42 @@ jobs:
       matrix:
         env:
           -
-            ALIASES: 'full latest'
-            DIR: 'legacy/full'
+            ALIASES: 'latest'
+            DIR: 'full'
             DOCKER_IMAGE: 'adorsys/ci-build'
             SQUASH: 'true'
-            TAG: 'legacy'
+            TAG: 'full'
           -
             DIR: 'second-edition/generated/ubi-8-java-8'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-java-8'
           -
             DIR: 'second-edition/generated/ubi-8-java-11'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-java-11'
           -
             DIR: 'second-edition/generated/ubi-8-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-node-10'
           -
             DIR: 'second-edition/generated/ubi-8-node-12'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-node-12'
           -
             DIR: 'second-edition/generated/ubi-8-java-8-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-java-8-node-10'
           -
             DIR: 'second-edition/generated/ubi-8-java-11-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-java-11-node-10'
           -
             DIR: 'second-edition/generated/ubi-8-java-8-node-12'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-java-8-node-12'
           -
             DIR: 'second-edition/generated/ubi-8-java-11-node-12'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            SQUASH: 'true'
             TAG: 'ubi-8-java-11-node-12'
     runs-on: ubuntu-latest
     steps:
