@@ -3,6 +3,8 @@
 set -euo pipefail
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash --version
+
+docker run --rm -eDOCKER_CLI_EXPERIMENTAL=enabled "${DOCKER_IMAGE}:${TAG}" docker buildx version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" docker --version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" git --version
 
