@@ -11,14 +11,14 @@ The default build image.
 
 Software list:
 
-* Java 8 and 11 (choosable via [JABBA](https://github.com/shyiko/jabba); default 8)
-* Node 10 and 12 (choosable via [NVM](https://github.com/creationix/nvm); default 10)
-* NPM and [YARN](https://yarnpkg.com/lang/en/)
+* Docker CE
 * Maven
+* NPM and [YARN](https://yarnpkg.com/lang/en/)
 * Build Tools like gcc (required for some node dependencies)
 
 ### Additional software list inside full variant
-* Docker CE
+* Java 8 and 11 (choosable via [JABBA](https://github.com/shyiko/jabba); default 8)
+* Node 10 and 12 (choosable via [NVM](https://github.com/creationix/nvm); default 10)
 * Firefox (bootstrap only)
 * JMeter (bootstrap only)
 * [skopeo](https://github.com/containers/skopeo)
@@ -44,7 +44,7 @@ We try to avoid version pinning. Prepare to always get the latest version.
 
 ## CI Examples
 
-### Use Java 11 in your job
+### Use Java 11 in your job (full flavor only)
 
 Create a file calling `.jabbarc` in the project root with this content
 ```
@@ -54,7 +54,7 @@ and use `jabba use` inside your CI.
 
 More informations: https://github.com/shyiko/jabba
 
-### Use Node 10 in your job
+### Use Node 10 in your job (full flavor only)
 
 Create a file calling `.nvmrc` in the project root with this content
 ```
