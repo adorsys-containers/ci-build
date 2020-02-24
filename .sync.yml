@@ -2,31 +2,31 @@
   checkoutTestApplications: true
   env:
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: full
-      DIR: full
-      ALIASES: 'latest'
+      TAG: 1-full
+      DIR: 1/full
+      ALIASES: 'full latest'
       SQUASH: 'true'
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-java-8
-      DIR: second-edition/generated/ubi-8-java-8
+      TAG: 2-ubi-8-java-8
+      DIR: 2/generated/ubi-8-java-8
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-java-11
-      DIR: second-edition/generated/ubi-8-java-11
+      TAG: 2-ubi-8-java-11
+      DIR: 2/generated/ubi-8-java-11
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-node-10
-      DIR: second-edition/generated/ubi-8-node-10
+      TAG: 2-ubi-8-node-10
+      DIR: 2/generated/ubi-8-node-10
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-node-12
-      DIR: second-edition/generated/ubi-8-node-12
+      TAG: 2-ubi-8-node-12
+      DIR: 2/generated/ubi-8-node-12
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-java-8-node-10
-      DIR: second-edition/generated/ubi-8-java-8-node-10
+      TAG: 2-ubi-8-java-8-node-10
+      DIR: 2/generated/ubi-8-java-8-node-10
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-java-11-node-10
-      DIR: second-edition/generated/ubi-8-java-11-node-10
+      TAG: 2-ubi-8-java-11-node-10
+      DIR: 2/generated/ubi-8-java-11-node-10
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-java-8-node-12
-      DIR: second-edition/generated/ubi-8-java-8-node-12
+      TAG: 2-ubi-8-java-8-node-12
+      DIR: 2/generated/ubi-8-java-8-node-12
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: ubi-8-java-11-node-12
-      DIR: second-edition/generated/ubi-8-java-11-node-12
+      TAG: 2-ubi-8-java-11-node-12
+      DIR: 2/generated/ubi-8-java-11-node-12

@@ -20,43 +20,43 @@ jobs:
       matrix:
         env:
           -
-            ALIASES: 'latest'
-            DIR: 'full'
+            ALIASES: 'latest full'
+            DIR: '1/full'
             DOCKER_IMAGE: 'adorsys/ci-build'
             SQUASH: 'true'
-            TAG: 'full'
+            TAG: '1-full'
           -
-            DIR: 'second-edition/generated/ubi-8-java-8'
+            DIR: '2/generated/ubi-8-java-8'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-java-8'
+            TAG: '2-ubi-8-java-8'
           -
-            DIR: 'second-edition/generated/ubi-8-java-11'
+            DIR: '2/generated/ubi-8-java-11'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-java-11'
+            TAG: '2-ubi-8-java-11'
           -
-            DIR: 'second-edition/generated/ubi-8-node-10'
+            DIR: '2/generated/ubi-8-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-node-10'
+            TAG: '2-ubi-8-node-10'
           -
-            DIR: 'second-edition/generated/ubi-8-node-12'
+            DIR: '2/generated/ubi-8-node-12'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-node-12'
+            TAG: '2-ubi-8-node-12'
           -
-            DIR: 'second-edition/generated/ubi-8-java-8-node-10'
+            DIR: '2/generated/ubi-8-java-8-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-java-8-node-10'
+            TAG: '2-ubi-8-java-8-node-10'
           -
-            DIR: 'second-edition/generated/ubi-8-java-11-node-10'
+            DIR: '2/generated/ubi-8-java-11-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-java-11-node-10'
+            TAG: '2-ubi-8-java-11-node-10'
           -
-            DIR: 'second-edition/generated/ubi-8-java-8-node-12'
+            DIR: '2/generated/ubi-8-java-8-node-12'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-java-8-node-12'
+            TAG: '2-ubi-8-java-8-node-12'
           -
-            DIR: 'second-edition/generated/ubi-8-java-11-node-12'
+            DIR: '2/generated/ubi-8-java-11-node-12'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: 'ubi-8-java-11-node-12'
+            TAG: '2-ubi-8-java-11-node-12'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
