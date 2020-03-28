@@ -21,29 +21,30 @@ for FLAVOR in "${FLAVORS[@]}"; do
   mkdir -p "generated/${FLAVOR}/tests"
   echo > "generated/${FLAVOR}/Dockerfile"
   echo > "generated/${FLAVOR}/tests/tests.sh"
+  echo -e '#!/bin/bash\n' >> "generated/${FLAVOR}/tests/tests.sh"
 
   if [[ "${FLAVOR}" =~ ubi-([0-9]+) ]]; then
     UBI_VERSION="${BASH_REMATCH[1]}"
 
-    cat "parts/ubi${UBI_VERSION}/base/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
-    cat "parts/ubi${UBI_VERSION}/base/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
+    grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/base/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
+    grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/base/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
     echo >> "generated/${FLAVOR}/Dockerfile"
     echo >> "generated/${FLAVOR}/tests/tests.sh"
 
     if [[ "${FLAVOR}" =~ java-([0-9]+) ]]; then
       JAVA_VERSION="${BASH_REMATCH[1]}"
-      cat "parts/ubi${UBI_VERSION}/java/${JAVA_VERSION}/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
-      cat "parts/ubi${UBI_VERSION}/java/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
-      cat "parts/ubi${UBI_VERSION}/java/${JAVA_VERSION}/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
+      grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/java/${JAVA_VERSION}/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
+      grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/java/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
+      grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/java/${JAVA_VERSION}/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
       echo >> "generated/${FLAVOR}/Dockerfile"
       echo >> "generated/${FLAVOR}/tests/tests.sh"
     fi
 
     if [[ "${FLAVOR}" =~ node-([0-9]+) ]]; then
       NODE_VERSION="${BASH_REMATCH[1]}"
-      cat "parts/ubi${UBI_VERSION}/node/${NODE_VERSION}/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
-      cat "parts/ubi${UBI_VERSION}/node/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
-      cat "parts/ubi${UBI_VERSION}/node/${NODE_VERSION}/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
+      grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/node/${NODE_VERSION}/Dockerfile" >> "generated/${FLAVOR}/Dockerfile"
+      grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/node/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
+      grep -v '#!/bin/bash' "parts/ubi${UBI_VERSION}/node/${NODE_VERSION}/tests/tests.sh" >> "generated/${FLAVOR}/tests/tests.sh"
       echo >> "generated/${FLAVOR}/Dockerfile"
       echo >> "generated/${FLAVOR}/tests/tests.sh"
     fi

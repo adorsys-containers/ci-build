@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash --version
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" java -version

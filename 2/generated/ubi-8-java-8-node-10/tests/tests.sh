@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 set -euo pipefail
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash --version
@@ -11,6 +12,7 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" git --version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'date | grep -E "CES?T"'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'locale | grep -E LC_ALL=.+\.UTF-8'
 
+
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash --version
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" java -version
@@ -20,7 +22,9 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'java -XshowSettings:properties
 # Test Maven
 docker run --rm -v "$(git rev-parse --show-toplevel)/test-applications/java/example-app/":/opt/app-root/src:cached "${DOCKER_IMAGE}:${TAG}" mvn -q --batch-mode clean package
 docker run --rm -eSPRING_MAIN_BANNER-MODE=off -e JAVA_OPTS="-Dspring.mandatory-file-encoding=UTF-8" -v "$(git rev-parse --show-toplevel)/test-applications/java/example-app/target/dockerhub-pipeline-images-test-jar.jar":/opt/app-root/src/app.jar "${DOCKER_IMAGE}:${TAG}"
+
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'java -version 2>&1 | grep -q "build 1\.8"'
+
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" gcc --version
 docker run --rm "${DOCKER_IMAGE}:${TAG}" node --version
@@ -40,5 +44,6 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install puppeteer-firefox 
 
 # Test Headless chrome via angular
 docker run --rm -eCI=1 -v "$(git rev-parse --show-toplevel)/test-applications/js/example-app/":/opt/app-root/src/:cached "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install && npx ng test --watch=false --code-coverage --browsers ChromeHeadlessNoSandbox'
+
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'node --version | grep -q "v10"'
 
