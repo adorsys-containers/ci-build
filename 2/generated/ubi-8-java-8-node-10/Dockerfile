@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1-407
+FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
 LABEL maintainer="adorsys GmbH & Co. KG" \
       vendor="adorsys GmbH & Co. KG" \
@@ -41,7 +41,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && microdnf update -y \
     && microdnf install --nodocs -y --enablerepo=docker-ce-stable \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
-        git-core docker-ce-cli tar curl \
+        git-core docker-ce-cli tar curl which \
     && rm -rf \
       /usr/libexec/docker/cli-plugins/docker-app \
       /var/cache/yum \
