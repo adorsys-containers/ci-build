@@ -18,3 +18,4 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'PUPPETEER_PRODUCT=firefox npm 
 
 # Test Headless chrome via angular
 docker run --rm -eCI=1 -v "$(git rev-parse --show-toplevel)/test-applications/js/example-app/":/opt/app-root/src/:cached "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install && npx ng test --watch=false --code-coverage --browsers ChromeHeadlessNoSandbox'
+docker run --rm -eCI=1 -ePUPPETEER_PRODUCT=firefox --shm-size 2g  -v "$(git rev-parse --show-toplevel)/test-applications/js/example-app/":/opt/app-root/src/:cached "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install && npx ng test --watch=false --code-coverage --browsers FirefoxHeadless'
