@@ -29,7 +29,7 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install puppeteer && ldd .
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install puppeteer && ./node_modules/puppeteer/.local-chromium/linux-*/chrome-linux/chrome --version'
 
 # Test Headless firefox
-docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install puppeteer-firefox && ./node_modules/puppeteer-firefox/.local-browser/firefox-linux-*/firefox/firefox --version'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'PUPPETEER_PRODUCT=firefox npm install puppeteer && ./node_modules/puppeteer/.local-firefox/linux-*/firefox/firefox --version'
 
 # Test Headless chrome via angular
 docker run --rm -eCI=1 -v "$(git rev-parse --show-toplevel)/test-applications/js/example-app/":/opt/app-root/src/:cached "${DOCKER_IMAGE}:${TAG}" bash -c 'npm install && npx ng test --watch=false --code-coverage --browsers ChromeHeadlessNoSandbox'
