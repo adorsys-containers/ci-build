@@ -1,5 +1,6 @@
 .dockerfilelintrc:
   rules:
+    latest_tag: off
     sudo_usage: off
 
 .github/workflows/ci.yaml:
