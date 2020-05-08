@@ -41,7 +41,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && microdnf update -y \
     && microdnf install --nodocs -y --enablerepo=docker-ce-stable \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
-        git-core docker-ce-cli tar curl which \
+        git-core docker-ce-cli tar curl which sudo \
     && rm -rf \
       /usr/libexec/docker/cli-plugins/docker-app \
       /var/cache/yum \
@@ -49,6 +49,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && strip /usr/bin/docker \
     && microdnf remove -y shadow-utils libsemanage \
     && microdnf clean all -y && rm -rf /var/cache/yum \
+    && printf 'Defaults !requiretty\nALL ALL=NOPASSWD: ALL' >> /etc/sudoers.d/all \
+    && chmod 440 /etc/sudoers.d/all \
     && ( \
       curl -sSf -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /usr/local/bin/jq \
       && chmod +x /usr/local/bin/jq \
