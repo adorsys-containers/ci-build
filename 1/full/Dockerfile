@@ -99,13 +99,15 @@ RUN set -euo pipefail \
     && microdnf install --nodocs -y --enablerepo=docker-ce-stable --enablerepo=google-chrome \
             --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
             --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
-        iproute zip unzip python2 bzip2 git-core gcc-c++ make findutils \
+        iproute zip unzip python2 bzip2 git-core gcc-c++ make findutils sudo \
         google-chrome-stable libXt libX11-xcb libXScrnSaver dbus-glib \
         java-1.8.0-openjdk-devel java-11-openjdk-devel apr \
         docker-ce-cli \
         binutils tar \
     && microdnf clean all -y && rm -rf /var/cache/yum \
     && chmod g=u /etc/passwd \
+    && printf 'Defaults !requiretty\nALL ALL=NOPASSWD: ALL' >> /etc/sudoers.d/all \
+    && chmod 440 /etc/sudoers.d/all \
     && curl -LsSf https://github.com/shenwei356/rush/releases/download/v${RUSH_VERSION}/rush_linux_amd64.tar.gz | tar xz -C /usr/local/bin \
     && mkdir -p /opt/app-root/src && chown -R 1001:0 /opt/app-root/src && chmod -R ug+rwx /opt/app-root/src \
     && ( \
