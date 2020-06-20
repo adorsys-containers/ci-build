@@ -35,15 +35,19 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'jabba use system@1.11 && java 
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 node --version | grep -q "node v10"'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 node --version | grep -q "node v12"'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 node --version | grep -q "node v14"'
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 node --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 node --version'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 node --version'
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 npm --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 npm --version'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 npm --version'
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 yarn --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 yarn --version'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 yarn --version'
 
 chmod -R 777 "$(git rev-parse --show-toplevel)/test-applications/"
 

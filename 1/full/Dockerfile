@@ -117,6 +117,7 @@ RUN set -euo pipefail \
       && . "${NVM_DIR}/nvm.sh" \
       && nvm install ${NODE_DEFAULT_VERSION} \
       && nvm install 12 \
+      && nvm install 14 \
       && nvm cache clear \
       && nvm alias default ${NODE_DEFAULT_VERSION} \
       && rm -rf /home/default/.npm/ \
