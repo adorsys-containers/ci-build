@@ -79,10 +79,6 @@ COPY --from=TCNATIVE /usr/lib/libtcnative*so /usr/lib/
 COPY --from=TZDATA /usr/share/zoneinfo/UTC /usr/share/zoneinfo/UTC
 COPY --from=TZDATA /usr/share/zoneinfo/Europe/Berlin /usr/share/zoneinfo/Europe/Berlin
 
-# Workaround for
-# https://github.com/rpm-software-management/microdnf/issues/50
-RUN mkdir -p /run/user/$(id -u)
-
 RUN set -euo pipefail \
     && microdnf install --nodocs -y shadow-utils libsemanage \
     && useradd -d "${HOME}" -M -u 1001 -g 0 default \
@@ -99,7 +95,7 @@ RUN set -euo pipefail \
     && microdnf install --nodocs -y --enablerepo=docker-ce-stable --enablerepo=google-chrome \
             --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
             --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
-        iproute zip unzip python2 bzip2 git-core gcc-c++ make findutils sudo \
+        iproute zip unzip python3 bzip2 git-core gcc-c++ make findutils sudo \
         google-chrome-stable libXt libX11-xcb libXScrnSaver dbus-glib \
         java-1.8.0-openjdk-devel java-11-openjdk-devel apr \
         docker-ce-cli \

@@ -30,10 +30,6 @@ ENV HOME=/tmp \
 
 WORKDIR /opt/app-root/src
 
-# Workaround for
-# https://github.com/rpm-software-management/microdnf/issues/50
-RUN mkdir -p /run/user/$(id -u)
-
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/7/$basearch/stable\nenabled=0\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker-ce.repo \
     && echo -e '[epel]\nname=Extra Packages for Enterprise Linux $releasever - $basearch\nmetalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir\nenabled=0\ngpgcheck=1\ngpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8' > /etc/yum.repos.d/epel.repo \
@@ -49,7 +45,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && strip /usr/bin/docker \
     && microdnf remove -y shadow-utils libsemanage \
     && microdnf clean all -y && rm -rf /var/cache/yum \
-    && echo 'ALL ALL=NOPASSWD: ALL' >> /etc/sudoers.d/all \
+    && printf 'Defaults !requiretty\nALL ALL=NOPASSWD: ALL' >> /etc/sudoers.d/all \
     && chmod 440 /etc/sudoers.d/all \
     && ( \
       curl -sSf -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /usr/local/bin/jq \
