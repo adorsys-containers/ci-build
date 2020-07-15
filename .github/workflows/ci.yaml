@@ -44,7 +44,7 @@ jobs:
           -
             DIR: '2/generated/ubi-8-node-14'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-node-12'
+            TAG: '2-ubi-8-node-14'
           -
             DIR: '2/generated/ubi-8-java-8-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
@@ -64,11 +64,11 @@ jobs:
           -
             DIR: '2/generated/ubi-8-java-8-node-14'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-8-node-12'
+            TAG: '2-ubi-8-java-8-node-14'
           -
             DIR: '2/generated/ubi-8-java-11-node-14'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-11-node-12'
+            TAG: '2-ubi-8-java-11-node-14'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -175,7 +175,7 @@ jobs:
             done;
             (exit $s)
           fi
-      
+
       - name: Slack notification if pipeline failed
         uses: 8398a7/action-slack@v3
         with:
