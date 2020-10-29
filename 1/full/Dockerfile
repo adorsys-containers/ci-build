@@ -66,7 +66,7 @@ ENV HOME=/tmp \
 COPY root /
 
 COPY --from=OC_CLIENT /usr/bin/oc /usr/local/bin/oc
-COPY --from=SKOPEO /go/src/github.com/containers/skopeo/skopeo /usr/local/bin/skopeo
+COPY --from=SKOPEO /go/src/github.com/containers/skopeo/bin/skopeo /usr/local/bin/skopeo
 COPY --from=TCNATIVE /usr/lib/libtcnative*so /usr/lib/
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1611117
