@@ -14,4 +14,4 @@ RUN microdnf --noplugins install --nodocs -y java-11-openjdk-devel \
     && mkdir -p "${MAVEN_CONFIG}" \
     && chmod -R g+rw "${MAVEN_CONFIG}" \
   ) \
-  && microdnf clean all -y && rm -rf /var/cache/yum
+  && microdnf --noplugins clean all -y && rm -rf /var/cache/yum

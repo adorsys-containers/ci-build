@@ -65,5 +65,5 @@ RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o 
       libXrandr mesa-libgbm alsa-lib atk at-spi2-atk pango gtk3 dbus-glib libXt \
     && npm install -g npm yarn \
     && npm cache clear --force \
-    && microdnf clean all -y && rm -rf /var/cache/yum
+    && microdnf --noplugins clean all -y && rm -rf /var/cache/yum
 

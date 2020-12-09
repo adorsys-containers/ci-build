@@ -94,7 +94,7 @@ RUN set -euo pipefail \
         java-1.8.0-openjdk-devel java-11-openjdk-devel apr \
         docker-ce-cli \
         binutils tar \
-    && microdnf clean all -y && rm -rf /var/cache/yum \
+    && microdnf --noplugins clean all -y && rm -rf /var/cache/yum \
     && chmod g=u /etc/passwd \
     && printf 'Defaults !requiretty\nALL ALL=NOPASSWD: ALL' >> /etc/sudoers.d/all \
     && chmod 440 /etc/sudoers.d/all \

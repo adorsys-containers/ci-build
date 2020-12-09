@@ -67,7 +67,7 @@ RUN microdnf --noplugins install --nodocs -y java-1.8.0-openjdk-devel \
     && mkdir -p "${MAVEN_CONFIG}" \
     && chmod -R g+rw "${MAVEN_CONFIG}" \
   ) \
-  && microdnf clean all -y && rm -rf /var/cache/yum
+  && microdnf --noplugins clean all -y && rm -rf /var/cache/yum
 
 RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial \
     && echo -e '[nodejs]\nname=nodejs\nstream=\nprofiles=\nstate=disabled' > /etc/dnf/modules.d/nodejs.module \
@@ -83,5 +83,5 @@ RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o 
       libXrandr mesa-libgbm alsa-lib atk at-spi2-atk pango gtk3 dbus-glib libXt \
     && npm install -g npm yarn \
     && npm cache clear --force \
-    && microdnf clean all -y && rm -rf /var/cache/yum
+    && microdnf --noplugins clean all -y && rm -rf /var/cache/yum
 
