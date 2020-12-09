@@ -74,9 +74,9 @@ COPY --from=TZDATA /usr/share/zoneinfo/UTC /usr/share/zoneinfo/UTC
 COPY --from=TZDATA /usr/share/zoneinfo/Europe/Berlin /usr/share/zoneinfo/Europe/Berlin
 
 RUN set -euo pipefail \
-    && microdnf install --nodocs -y shadow-utils libsemanage \
+    && microdnf --noplugins install --nodocs -y shadow-utils libsemanage \
     && useradd -d "${HOME}" -M -u 1001 -g 0 default \
-    && microdnf remove -y shadow-utils libsemanage \
+    && microdnf --noplugins remove -y shadow-utils libsemanage \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial \
     && echo -e '[google-chrome]\nname=google-chrome\nbaseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch\nenabled=0\ngpgcheck=1\ngpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub' > /etc/yum.repos.d/google-chrome.repo \
@@ -85,8 +85,8 @@ RUN set -euo pipefail \
     && echo -e '[centos-8-baseos]\nname=CentOS-$releasever - BaseOS\nbaseurl=http://mirror.centos.org/centos/$releasever/BaseOS/$basearch/os/\ngpgcheck=1\npriority=99\nenabled=0\ngpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial' > /etc/yum.repos.d/centos-8-baseos.repo \
     && echo -e '[centos-8-appstream]\nname=CentOS-$releasever - AppStream\nbaseurl=http://mirror.centos.org/centos/$releasever/AppStream/$basearch/os/\ngpgcheck=1\npriority=99\nenabled=0\ngpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial' > /etc/yum.repos.d/centos-8-appstream.repo \
     && echo -e '[copr:copr.fedorainfracloud.org:jkroepke:git]\nname=Copr repo for git owned by jkroepke\nbaseurl=https://download.copr.fedorainfracloud.org/results/jkroepke/git/epel-8-$basearch/\ntype=rpm-md\nenabled=0\ngpgcheck=1\ngpgkey=https://download.copr.fedorainfracloud.org/results/jkroepke/git/pubkey.gpg\nrepo_gpgcheck=0\nenabled=1\nenabled_metadata=1' > /etc/yum.repos.d/jkroepke-git.repo \
-    && microdnf update -y \
-    && microdnf install --nodocs -y --enablerepo=docker-ce-stable --enablerepo=google-chrome \
+    && microdnf --noplugins update -y \
+    && microdnf --noplugins install --nodocs -y --enablerepo=docker-ce-stable --enablerepo=google-chrome \
             --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
             --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
         iproute zip unzip python3 bzip2 git-core gcc-c++ make findutils sudo \

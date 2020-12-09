@@ -31,20 +31,19 @@ ENV HOME=/tmp \
 WORKDIR /opt/app-root/src
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
-    && echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/7/$basearch/stable\nenabled=0\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker-ce.repo \
+    && echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/8/$basearch/stable\nenabled=0\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker-ce.repo \
     && echo -e '[epel]\nname=Extra Packages for Enterprise Linux $releasever - $basearch\nmetalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir\nenabled=0\ngpgcheck=1\ngpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8' > /etc/yum.repos.d/epel.repo \
     && echo -e '[copr:copr.fedorainfracloud.org:jkroepke:git]\nname=Copr repo for git owned by jkroepke\nbaseurl=https://download.copr.fedorainfracloud.org/results/jkroepke/git/epel-8-$basearch/\ntype=rpm-md\nenabled=0\ngpgcheck=1\ngpgkey=https://download.copr.fedorainfracloud.org/results/jkroepke/git/pubkey.gpg\nrepo_gpgcheck=0\nenabled=1\nenabled_metadata=1' > /etc/yum.repos.d/jkroepke-git.repo \
-    && microdnf update -y \
-    && microdnf install --nodocs -y --enablerepo=docker-ce-stable \
+    && microdnf --noplugins update -y \
+    && microdnf --noplugins install --nodocs -y --enablerepo=docker-ce-stable \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
         git-core docker-ce-cli tar curl which sudo \
     && rm -rf \
       /usr/libexec/docker/cli-plugins/docker-app \
       /var/cache/yum \
-    && microdnf install --nodocs -y binutils \
+    && microdnf --noplugins install --nodocs -y binutils \
     && strip /usr/bin/docker \
-    && microdnf remove -y shadow-utils libsemanage \
-    && microdnf clean all -y && rm -rf /var/cache/yum \
+    && microdnf --noplugins clean all -y && rm -rf /var/cache/yum \
     && printf 'Defaults !requiretty\nALL ALL=NOPASSWD: ALL' >> /etc/sudoers.d/all \
     && chmod 440 /etc/sudoers.d/all \
     && ( \

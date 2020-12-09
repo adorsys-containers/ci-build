@@ -3,7 +3,7 @@ ARG MAVEN_VERSION=3.6.3
 # https://github.com/carlossg/docker-maven/blob/master/jdk-8/Dockerfile#L5
 ARG MAVEN_SHA=c35a1803a6e70a126e80b2b3ae33eed961f83ed74d18fcd16909b2d44d7dada3203f1ffe726c17ef8dcca2dcaa9fca676987befeadc9b9f759967a8cb77181c0
 
-RUN microdnf install --nodocs -y java-11-openjdk-devel \
+RUN microdnf --noplugins install --nodocs -y java-11-openjdk-devel \
   && ( mkdir -p "${MAVEN_HOME}" \
     && cd "${MAVEN_HOME}" \
     && curl -fsSLO "https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" \

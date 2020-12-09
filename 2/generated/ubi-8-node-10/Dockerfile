@@ -31,20 +31,19 @@ ENV HOME=/tmp \
 WORKDIR /opt/app-root/src
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
-    && echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/7/$basearch/stable\nenabled=0\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker-ce.repo \
+    && echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/8/$basearch/stable\nenabled=0\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker-ce.repo \
     && echo -e '[epel]\nname=Extra Packages for Enterprise Linux $releasever - $basearch\nmetalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir\nenabled=0\ngpgcheck=1\ngpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8' > /etc/yum.repos.d/epel.repo \
     && echo -e '[copr:copr.fedorainfracloud.org:jkroepke:git]\nname=Copr repo for git owned by jkroepke\nbaseurl=https://download.copr.fedorainfracloud.org/results/jkroepke/git/epel-8-$basearch/\ntype=rpm-md\nenabled=0\ngpgcheck=1\ngpgkey=https://download.copr.fedorainfracloud.org/results/jkroepke/git/pubkey.gpg\nrepo_gpgcheck=0\nenabled=1\nenabled_metadata=1' > /etc/yum.repos.d/jkroepke-git.repo \
-    && microdnf update -y \
-    && microdnf install --nodocs -y --enablerepo=docker-ce-stable \
+    && microdnf --noplugins update -y \
+    && microdnf --noplugins install --nodocs -y --enablerepo=docker-ce-stable \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
         git-core docker-ce-cli tar curl which sudo \
     && rm -rf \
       /usr/libexec/docker/cli-plugins/docker-app \
       /var/cache/yum \
-    && microdnf install --nodocs -y binutils \
+    && microdnf --noplugins install --nodocs -y binutils \
     && strip /usr/bin/docker \
-    && microdnf remove -y shadow-utils libsemanage \
-    && microdnf clean all -y && rm -rf /var/cache/yum \
+    && microdnf --noplugins clean all -y && rm -rf /var/cache/yum \
     && printf 'Defaults !requiretty\nALL ALL=NOPASSWD: ALL' >> /etc/sudoers.d/all \
     && chmod 440 /etc/sudoers.d/all \
     && ( \
@@ -57,7 +56,7 @@ RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o 
     && echo -e '[centos-8-baseos]\nname=CentOS-$releasever - BaseOS\nbaseurl=http://mirror.centos.org/centos/$releasever/BaseOS/$basearch/os/\ngpgcheck=1\npriority=99\nenabled=0\ngpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial' > /etc/yum.repos.d/centos-8-baseos.repo \
     && echo -e '[centos-8-appstream]\nname=CentOS-$releasever - AppStream\nbaseurl=http://mirror.centos.org/centos/$releasever/AppStream/$basearch/os/\ngpgcheck=1\npriority=99\nenabled=0\ngpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial' > /etc/yum.repos.d/centos-8-appstream.repo \
     && echo -e '[nodesource]\nname=nodesource\nbaseurl=https://rpm.nodesource.com/pub_10.x/el/8/$basearch\nenabled=1\ngpgcheck=1\ngpgkey=https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL' > /etc/yum.repos.d/nodesource.repo \
-    && microdnf install --nodocs -y --enablerepo=nodesource \
+    && microdnf --noplugins install --nodocs -y --enablerepo=nodesource \
         --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
       gcc-c++ make nodejs \
