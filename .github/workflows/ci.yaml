@@ -101,6 +101,7 @@ jobs:
             docker build --pull -t "${DOCKER_IMAGE}:${TAG}" . && s=0 && break || s=$? && sleep 15;
           done;
           (exit $s)
+        working-directory: ${{ matrix.env.DIR }}
 
       - name: Run tests
         env: ${{ matrix.env }}
