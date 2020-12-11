@@ -4,7 +4,6 @@
     sudo_usage: "off"
 
 .github/workflows/ci.yaml:
-  checkoutTestApplications: true
   env:
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: 1-full
