@@ -21,6 +21,9 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" ip -V
 docker run --rm "${DOCKER_IMAGE}:${TAG}" rush -V
 docker run --rm "${DOCKER_IMAGE}:${TAG}" gcc --version
 
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c '/opt/cover2cover.py | grep "Usage: "'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c '/opt/source2filename.py | grep "Usage: "'
+
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'date | grep -E "CES?T"'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'locale | grep -E LC_ALL=.+\.UTF-8'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'java -XshowSettings:properties -version |& grep "file.encoding = UTF-8"'

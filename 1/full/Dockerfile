@@ -79,6 +79,7 @@ RUN set -euo pipefail \
     && microdnf --noplugins remove -y shadow-utils libsemanage \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial \
+    && printf '[python38]\nname=python38\nstream=3.8\nprofiles=\nstate=enabled' > /etc/dnf/modules.d/python38.module \
     && echo -e '[google-chrome]\nname=google-chrome\nbaseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch\nenabled=0\ngpgcheck=1\ngpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub' > /etc/yum.repos.d/google-chrome.repo \
     && echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/8/$basearch/stable\nenabled=0\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker-ce.repo \
     && echo -e '[epel]\nname=Extra Packages for Enterprise Linux $releasever - $basearch\nmetalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir\nenabled=0\ngpgcheck=1\ngpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8' > /etc/yum.repos.d/epel.repo \
@@ -89,7 +90,8 @@ RUN set -euo pipefail \
     && microdnf --noplugins install --nodocs -y --enablerepo=docker-ce-stable --enablerepo=google-chrome \
             --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
             --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
-        iproute zip unzip python3 bzip2 git-core gcc-c++ make findutils sudo \
+        iproute zip unzip python38 bzip2 git-core gcc-c++ make findutils sudo \
+        python38-lxml \
         google-chrome-stable libXt libX11-xcb libXScrnSaver dbus-glib \
         java-1.8.0-openjdk-devel java-11-openjdk-devel apr \
         docker-ce-cli \
@@ -103,6 +105,13 @@ RUN set -euo pipefail \
     && ( \
       curl -sSf -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /usr/local/bin/jq \
       && chmod +x /usr/local/bin/jq \
+    ) \
+    # https://docs.gitlab.com/ce/user/project/merge_requests/test_coverage_visualization.html
+    # https://gitlab.com/haynes/jacoco2cobertura/-/tree/master
+    && ( \
+      curl -sSfL https://gitlab.com/haynes/jacoco2cobertura/-/archive/1.0.4/jacoco2cobertura-1.0.4.tar.gz | tar xz --strip-components 1 -C /opt/ '*.py' \
+      && chmod +x /opt/*.py \
+      && ln -snf /usr/bin/python3 /usr/bin/python \
     ) \
     && (mkdir -p "${NVM_DIR}" && cd "${NVM_DIR}" \
       && curl "https://raw.githubusercontent.com/creationix/nvm/master/install.sh" | bash \
