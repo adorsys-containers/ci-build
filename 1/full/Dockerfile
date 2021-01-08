@@ -74,7 +74,7 @@ RUN set -euo pipefail \
         iproute zip unzip python38 bzip2 git-core gcc-c++ make findutils sudo \
         python38-lxml \
         google-chrome-stable libXt libX11-xcb libXScrnSaver dbus-glib \
-        java-1.8.0-openjdk-devel java-11-openjdk-devel apr \
+        java-1.8.0-openjdk-devel java-11-openjdk-devel \
         docker-ce-cli \
         binutils tar \
     && microdnf --noplugins clean all -y && rm -rf /var/cache/yum \
