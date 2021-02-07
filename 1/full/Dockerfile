@@ -9,23 +9,6 @@ RUN mkdir -p $GOPATH/src/github.com/containers/skopeo \
     && curl -LsSf https://github.com/containers/skopeo/archive/${SKOPEO_VERSION}.tar.gz | tar xz --strip-components=1 -C $GOPATH/src/github.com/containers/skopeo \
     && cd $GOPATH/src/github.com/containers/skopeo && make bin/skopeo DISABLE_CGO=1
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest AS TCNATIVE
-
-RUN microdnf install -y apr-devel openssl-devel java-1.8.0-openjdk-devel tar gzip gcc make redhat-rpm-config
-
-RUN set -x \
-    # https://github.com/infosiftr/tomcat/blob/5f1abae99c0b1ebbd4f020bc4b5696619d948cfd/7/jre8-alpine/Dockerfile
-    && nativeBuildDir="$(mktemp -d)" \
-    && nativeVersion=$(curl -sSfL "https://downloads.apache.org/tomcat/tomcat-connectors/native/" | sed -nE 's/.*<a href="([0-9]+\.[0-9]+.[0-9]+)\/">.*/\1/p' | tail -n1) \
-    && curl -sSfL "https://downloads.apache.org/tomcat/tomcat-connectors/native/${nativeVersion}/source/tomcat-native-${nativeVersion}-src.tar.gz" | tar -zx -C "$nativeBuildDir" --strip-components=1 \
-    && export CATALINA_HOME="$PWD" \
-    && cd "$nativeBuildDir/native" \
-    && ./configure --with-apr=/usr/bin/apr-1-config \
-              --with-java-home=/usr/lib/jvm/java-openjdk  \
-              --with-ssl=yes \
-              --prefix=/usr \
-    && make && make install
-
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
 LABEL maintainer="adorsys GmbH & Co. KG" \
@@ -66,7 +49,6 @@ COPY root /
 
 COPY --from=OC_CLIENT /usr/bin/oc /usr/local/bin/oc
 COPY --from=SKOPEO /go/src/github.com/containers/skopeo/bin/skopeo /usr/local/bin/skopeo
-COPY --from=TCNATIVE /usr/lib/libtcnative*so /usr/lib/
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1611117
 COPY --from=TZDATA /usr/share/zoneinfo/UTC /usr/share/zoneinfo/UTC
