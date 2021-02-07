@@ -24,8 +24,7 @@ ENV HOME=/tmp \
     NO_UPDATE_NOTIFIER=1 \
     JAVA_HOME="/usr/lib/jvm/jre" \
     JAVA_TOOL_OPTIONS="-Xmx1G" \
-    NODE_OPTIONS="--max_old_space_size=1024" \
-    MAVEN_CONFIG="/usr/local/share/.m2"
+    NODE_OPTIONS="--max_old_space_size=1024"
 
 WORKDIR /opt/app-root/src
 
@@ -63,8 +62,6 @@ RUN microdnf --noplugins install --nodocs -y java-1.8.0-openjdk-devel \
     && tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C "${MAVEN_HOME}" --strip-components=1 \
     && rm -f apache-maven-${MAVEN_VERSION}-bin.tar.gz apache-maven-${MAVEN_VERSION}-bin.tar.gz.sha512 \
     && ln -s "${MAVEN_HOME}/bin/mvn" /usr/bin/mvn \
-    && mkdir -p "${MAVEN_CONFIG}" \
-    && chmod -R g+rw "${MAVEN_CONFIG}" \
   ) \
   && microdnf --noplugins clean all -y && rm -rf /var/cache/yum
 

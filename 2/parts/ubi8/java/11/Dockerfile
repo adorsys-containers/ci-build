@@ -11,7 +11,5 @@ RUN microdnf --noplugins install --nodocs -y java-11-openjdk-devel \
     && tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C "${MAVEN_HOME}" --strip-components=1 \
     && rm -f apache-maven-${MAVEN_VERSION}-bin.tar.gz apache-maven-${MAVEN_VERSION}-bin.tar.gz.sha512 \
     && ln -s "${MAVEN_HOME}/bin/mvn" /usr/bin/mvn \
-    && mkdir -p "${MAVEN_CONFIG}" \
-    && chmod -R g+rw "${MAVEN_CONFIG}" \
   ) \
   && microdnf --noplugins clean all -y && rm -rf /var/cache/yum

@@ -24,8 +24,7 @@ ENV HOME=/tmp \
     NO_UPDATE_NOTIFIER=1 \
     JAVA_HOME="/usr/lib/jvm/jre" \
     JAVA_TOOL_OPTIONS="-Xmx1G" \
-    NODE_OPTIONS="--max_old_space_size=1024" \
-    MAVEN_CONFIG="/usr/local/share/.m2"
+    NODE_OPTIONS="--max_old_space_size=1024"
 
 WORKDIR /opt/app-root/src
 
