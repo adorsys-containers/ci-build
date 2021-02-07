@@ -76,7 +76,7 @@ RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o 
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
       gcc-c++ make nodejs \
       # Chrome / Firefox
-      libX11 libX11-xcb libXcomposite libXcursor libXdamage libXext libXi libXtst nss cups-libs libXScrnSaver libdrm \
+      libX11 libX11-xcb libXcomposite libXcursor libXdamage libXext libXi libXtst nss cups-libs libXScrnSaver libdrm libxshmfence \
       libXrandr mesa-libgbm alsa-lib atk at-spi2-atk pango gtk3 dbus-glib libXt \
     && npm install -g npm@6 yarn \
     && npm cache clear --force \
