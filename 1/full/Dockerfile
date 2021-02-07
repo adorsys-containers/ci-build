@@ -57,7 +57,6 @@ ENV HOME=/tmp \
     JAVA_TOOL_OPTIONS="-Xmx1G" \
     NODE_OPTIONS="--max_old_space_size=1024" \
     MAVEN_HOME="/usr/share/maven" \
-    MAVEN_CONFIG="/usr/local/share/.m2" \
     NVM_DIR="/usr/local/share/nvm" \
     JABBA_HOME="/usr/local/share/jabba" \
     BASH_ENV=/enable.sh \
@@ -116,7 +115,7 @@ RUN set -euo pipefail \
     && (mkdir -p "${NVM_DIR}" && cd "${NVM_DIR}" \
       && curl "https://raw.githubusercontent.com/creationix/nvm/master/install.sh" | bash \
       && rm -rf .git test \
-      && echo -e "npm\nyarn" > default-packages \
+      && echo -e "npm@6\nyarn" > default-packages \
       && . "${NVM_DIR}/nvm.sh" \
       && nvm install ${NODE_DEFAULT_VERSION} \
       && nvm install 12 \
