@@ -15,6 +15,9 @@ services:
   ubi-8-node-14:
     image: adorsys/ci-build:ubi-8-node-14
     build: generated/ubi-8-node-14
+  ubi-8-node-16:
+    image: adorsys/ci-build:ubi-8-node-16
+    build: generated/ubi-8-node-16
   ubi-8-java-8-node-10:
     image: adorsys/ci-build:ubi-8-java-8-node-10
     build: generated/ubi-8-java-8-node-10
@@ -33,3 +36,9 @@ services:
   ubi-8-java-11-node-14:
     image: adorsys/ci-build:ubi-8-java-11-node-14
     build: generated/ubi-8-java-11-node-14
+  ubi-8-java-8-node-16:
+    image: adorsys/ci-build:ubi-8-java-8-node-16
+    build: generated/ubi-8-java-8-node-16
+  ubi-8-java-11-node-16:
+    image: adorsys/ci-build:ubi-8-java-11-node-16
+    build: generated/ubi-8-java-11-node-16
