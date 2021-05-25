@@ -99,9 +99,11 @@ RUN set -euo pipefail \
       && rm -rf .git test \
       && echo -e "npm@6\nyarn" > default-packages \
       && . "${NVM_DIR}/nvm.sh" \
-      && nvm install ${NODE_DEFAULT_VERSION} \
+      && nvm install 10 \
       && nvm install 12 \
       && nvm install 14 \
+      && echo -e "npm@7\nyarn" > default-packages \
+      && nvm install 16 \
       && nvm cache clear \
       && nvm alias default ${NODE_DEFAULT_VERSION} \
       && rm -rf /home/default/.npm/ \

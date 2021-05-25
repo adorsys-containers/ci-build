@@ -15,6 +15,8 @@ FLAVORS=(
   "ubi-8-java-11-node-12"
   "ubi-8-java-8-node-14"
   "ubi-8-java-11-node-14"
+  "ubi-8-java-8-node-16"
+  "ubi-8-java-11-node-16"
 )
 
 rm -rf generated
