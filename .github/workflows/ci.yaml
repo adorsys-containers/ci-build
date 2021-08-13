@@ -48,7 +48,7 @@ jobs:
           -
             DIR: '2/generated/ubi-8-node-16'
             DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-node-14'
+            TAG: '2-ubi-8-node-16'
           -
             DIR: '2/generated/ubi-8-java-8-node-10'
             DOCKER_IMAGE: 'adorsys/ci-build'
@@ -190,7 +190,7 @@ jobs:
             done;
             (exit $s)
           fi
-
+      
       - name: Slack notification if pipeline failed
         # https://github.community/t5/GitHub-Actions/GitHub-Actions-branch-conditional/m-p/29794
         uses: 8398a7/action-slack@v3.8.0
