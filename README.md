@@ -18,7 +18,7 @@ Software list:
 
 ### Additional software list inside full variant
 * Java 8, 11, 17 (choosable via [JABBA](https://github.com/shyiko/jabba); default 8)
-* Node 10, 12, 14, 16 (choosable via [NVM](https://github.com/creationix/nvm); default 10)
+* Node 12, 14, 16 (choosable via [NVM](https://github.com/creationix/nvm); default 10)
 * Firefox (bootstrap only)
 * [skopeo](https://github.com/containers/skopeo)
 * [jq](https://stedolan.github.io/jq/)
