@@ -17,8 +17,8 @@ Software list:
 * Build Tools like gcc (required for some node dependencies)
 
 ### Additional software list inside full variant
-* Java 8 and 11 (choosable via [JABBA](https://github.com/shyiko/jabba); default 8)
-* Node 10, 12 and 14 (choosable via [NVM](https://github.com/creationix/nvm); default 10)
+* Java 8, 11, 17 (choosable via [JABBA](https://github.com/shyiko/jabba); default 8)
+* Node 12, 14, 16 (choosable via [NVM](https://github.com/creationix/nvm); default 10)
 * Firefox (bootstrap only)
 * [skopeo](https://github.com/containers/skopeo)
 * [jq](https://stedolan.github.io/jq/)
@@ -28,21 +28,29 @@ We try to avoid version pinning. Prepare to always get the latest version.
 
 ## Tags
 
-| Name | Description | Size | 
-| ---- | ----------- | ---- |
-| latest | alias of full | [![](https://images.microbadger.com/badges/image/adorsys/ci-build.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 1-full | includes browser | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:full.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-java-8 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-java-11 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 11 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-node-10 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with NodeJS 10 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-node-10.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-node-12 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with NodeJS 12 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-node-12.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-node-14 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with NodeJS 14 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-node-14.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-java-8-node-10 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 + NodeJS 10 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8-node-10.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| Name                    | Description                                                                              | Size                                                                                                                                             | 
+|-------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| latest                  | alias of full                                                                            | [![](https://images.microbadger.com/badges/image/adorsys/ci-build.svg)](https://microbadger.com/images/adorsys/ci-build)                         |
+| 1-full                  | includes browser                                                                         | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:full.svg)](https://microbadger.com/images/adorsys/ci-build)                    |
+| 2-ubi-8-java-8          | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8              | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8.svg)](https://microbadger.com/images/adorsys/ci-build)          |
+| 2-ubi-8-java-11         | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 11             | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11.svg)](https://microbadger.com/images/adorsys/ci-build)         |
+| 2-ubi-8-java-17         | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 17             | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11.svg)](https://microbadger.com/images/adorsys/ci-build)         |
+| 2-ubi-8-node-10         | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with NodeJS 10           | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-node-10.svg)](https://microbadger.com/images/adorsys/ci-build)         |
+| 2-ubi-8-node-12         | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with NodeJS 12           | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-node-12.svg)](https://microbadger.com/images/adorsys/ci-build)         |
+| 2-ubi-8-node-14         | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with NodeJS 14           | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-node-14.svg)](https://microbadger.com/images/adorsys/ci-build)         |
+| 2-ubi-8-node-16         | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with NodeJS 16           | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-node-14.svg)](https://microbadger.com/images/adorsys/ci-build)         |
+| 2-ubi-8-java-8-node-10  | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 + NodeJS 10  | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8-node-10.svg)](https://microbadger.com/images/adorsys/ci-build)  |
 | 2-ubi-8-java-11-node-10 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 11 + NodeJS 10 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-10.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-java-8-node-12 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 + NodeJS 12 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8-node-12.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| 2-ubi-8-java-17-node-10 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 17 + NodeJS 10 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-10.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| 2-ubi-8-java-8-node-12  | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 + NodeJS 12  | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8-node-12.svg)](https://microbadger.com/images/adorsys/ci-build)  |
 | 2-ubi-8-java-11-node-12 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 11 + NodeJS 12 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-12.svg)](https://microbadger.com/images/adorsys/ci-build) |
-| 2-ubi-8-java-8-node-14 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 + NodeJS 14 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8-node-14.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| 2-ubi-8-java-17-node-12 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 17 + NodeJS 12 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-12.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| 2-ubi-8-java-8-node-14  | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 + NodeJS 14  | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8-node-14.svg)](https://microbadger.com/images/adorsys/ci-build)  |
 | 2-ubi-8-java-11-node-14 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 11 + NodeJS 14 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-14.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| 2-ubi-8-java-17-node-14 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 17 + NodeJS 14 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-14.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| 2-ubi-8-java-8-node-16  | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 8 + NodeJS 16  | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-8-node-14.svg)](https://microbadger.com/images/adorsys/ci-build)  |
+| 2-ubi-8-java-11-node-16 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 11 + NodeJS 16 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-14.svg)](https://microbadger.com/images/adorsys/ci-build) |
+| 2-ubi-8-java-17-node-16 | [UBI 8](https://developers.redhat.com/products/rhel/ubi/) based with Java 17 + NodeJS 16 | [![](https://images.microbadger.com/badges/image/adorsys/ci-build:2-ubi-8-java-11-node-14.svg)](https://microbadger.com/images/adorsys/ci-build) |
 
 ## CI Examples
 

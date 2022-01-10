@@ -55,7 +55,7 @@ ARG MAVEN_VERSION=3.8.4
 # https://github.com/carlossg/docker-maven/blob/master/openjdk-17/Dockerfile
 ARG MAVEN_SHA=a9b2d825eacf2e771ed5d6b0e01398589ac1bfa4171f36154d1b5787879605507802f699da6f7cfc80732a5282fd31b28e4cd6052338cbef0fa1358b48a5e3c8
 
-RUN microdnf --noplugins install --nodocs -y java-11-openjdk-devel \
+RUN microdnf --noplugins install --nodocs -y java-17-openjdk-devel \
   && ( mkdir -p "${MAVEN_HOME}" \
     && cd "${MAVEN_HOME}" \
     && curl -fsSLO "https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" \
@@ -70,7 +70,7 @@ RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o 
     && echo -e '[nodejs]\nname=nodejs\nstream=\nprofiles=\nstate=disabled' > /etc/dnf/modules.d/nodejs.module \
     && echo -e '[centos-8-baseos]\nname=CentOS-$releasever - BaseOS\nbaseurl=http://mirror.centos.org/centos/$releasever/BaseOS/$basearch/os/\ngpgcheck=1\npriority=99\nenabled=0\ngpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial' > /etc/yum.repos.d/centos-8-baseos.repo \
     && echo -e '[centos-8-appstream]\nname=CentOS-$releasever - AppStream\nbaseurl=http://mirror.centos.org/centos/$releasever/AppStream/$basearch/os/\ngpgcheck=1\npriority=99\nenabled=0\ngpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial' > /etc/yum.repos.d/centos-8-appstream.repo \
-    && echo -e '[nodesource]\nname=nodesource\nbaseurl=https://rpm.nodesource.com/pub_10.x/el/8/$basearch\nenabled=1\ngpgcheck=1\ngpgkey=https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL' > /etc/yum.repos.d/nodesource.repo \
+    && echo -e '[nodesource]\nname=nodesource\nbaseurl=https://rpm.nodesource.com/pub_16.x/el/8/$basearch\nenabled=1\ngpgcheck=1\ngpgkey=https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL' > /etc/yum.repos.d/nodesource.repo \
     && microdnf --noplugins install --nodocs -y --enablerepo=nodesource \
         --enablerepo=centos-8-baseos --enablerepo=centos-8-appstream \
         --enablerepo=copr:copr.fedorainfracloud.org:jkroepke:git \
@@ -78,7 +78,7 @@ RUN curl -sSf -L http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-Official -o 
       # Chrome / Firefox
       libX11 libX11-xcb libXcomposite libXcursor libXdamage libXext libXi libXtst nss cups-libs libXScrnSaver libdrm libxshmfence \
       libXrandr mesa-libgbm alsa-lib atk at-spi2-atk pango gtk3 dbus-glib libXt \
-    && npm install -g npm@6 yarn \
+    && npm install -g npm@7 yarn \
     && npm cache clear --force \
     && microdnf --noplugins clean all -y && rm -rf /var/cache/yum
 

@@ -19,68 +19,68 @@ jobs:
       fail-fast: false
       matrix:
         env:
-          -
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 1-full
+            DIR: 1/full
             ALIASES: 'full latest'
-            DIR: '1/full'
-            DOCKER_IMAGE: 'adorsys/ci-build'
             SQUASH: 'true'
-            TAG: '1-full'
-          -
-            DIR: '2/generated/ubi-8-java-8'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-8'
-          -
-            DIR: '2/generated/ubi-8-java-11'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-11'
-          -
-            DIR: '2/generated/ubi-8-node-10'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-node-10'
-          -
-            DIR: '2/generated/ubi-8-node-12'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-node-12'
-          -
-            DIR: '2/generated/ubi-8-node-14'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-node-14'
-          -
-            DIR: '2/generated/ubi-8-node-16'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-node-16'
-          -
-            DIR: '2/generated/ubi-8-java-8-node-10'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-8-node-10'
-          -
-            DIR: '2/generated/ubi-8-java-11-node-10'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-11-node-10'
-          -
-            DIR: '2/generated/ubi-8-java-8-node-12'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-8-node-12'
-          -
-            DIR: '2/generated/ubi-8-java-11-node-12'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-11-node-12'
-          -
-            DIR: '2/generated/ubi-8-java-8-node-14'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-8-node-14'
-          -
-            DIR: '2/generated/ubi-8-java-11-node-14'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-11-node-14'
-          -
-            DIR: '2/generated/ubi-8-java-8-node-16'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-8-node-14'
-          -
-            DIR: '2/generated/ubi-8-java-11-node-16'
-            DOCKER_IMAGE: 'adorsys/ci-build'
-            TAG: '2-ubi-8-java-11-node-14'
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-8
+            DIR: 2/generated/ubi-8-java-8
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-11
+            DIR: 2/generated/ubi-8-java-11
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-17
+            DIR: 2/generated/ubi-8-java-17
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-node-10
+            DIR: 2/generated/ubi-8-node-10
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-node-12
+            DIR: 2/generated/ubi-8-node-12
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-node-14
+            DIR: 2/generated/ubi-8-node-14
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-node-16
+            DIR: 2/generated/ubi-8-node-16
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-8-node-10
+            DIR: 2/generated/ubi-8-java-8-node-10
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-11-node-10
+            DIR: 2/generated/ubi-8-java-11-node-10
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-17-node-10
+            DIR: 2/generated/ubi-8-java-17-node-10
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-8-node-12
+            DIR: 2/generated/ubi-8-java-8-node-12
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-11-node-12
+            DIR: 2/generated/ubi-8-java-11-node-12
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-17-node-12
+            DIR: 2/generated/ubi-8-java-17-node-12
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-8-node-14
+            DIR: 2/generated/ubi-8-java-8-node-14
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-11-node-14
+            DIR: 2/generated/ubi-8-java-11-node-14
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-17-node-14
+            DIR: 2/generated/ubi-8-java-17-node-14
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-8-node-16
+            DIR: 2/generated/ubi-8-java-8-node-16
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-11-node-16
+            DIR: 2/generated/ubi-8-java-11-node-16
+          - DOCKER_IMAGE: adorsys/ci-build
+            TAG: 2-ubi-8-java-17-node-16
+            DIR: 2/generated/ubi-8-java-17-node-16
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -190,7 +190,7 @@ jobs:
             done;
             (exit $s)
           fi
-      
+
       - name: Slack notification if pipeline failed
         # https://github.community/t5/GitHub-Actions/GitHub-Actions-branch-conditional/m-p/29794
         uses: 8398a7/action-slack@v3.8.0

@@ -35,23 +35,20 @@ docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'java -version 2>&1 | grep -q "
 
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'jabba use system@1.8 && java -version 2>&1 | grep -q "build 1\.8"'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'jabba use system@1.11 && java -version 2>&1 | grep -q "build 11"'
+docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'jabba use system@1.17 && java -version 2>&1 | grep -q "build 17"'
 
-docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 node --version | grep -q "node v10"'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 node --version | grep -q "node v12"'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 node --version | grep -q "node v14"'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 16 node --version | grep -q "node v16"'
 
-docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 node --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 node --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 node --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 16 node --version'
 
-docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 npm --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 npm --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 npm --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 16 npm --version'
 
-docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 10 yarn --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 12 yarn --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 14 yarn --version'
 docker run --rm "${DOCKER_IMAGE}:${TAG}" bash -c 'nvm exec 16 yarn --version'

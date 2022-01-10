@@ -26,11 +26,11 @@ LABEL maintainer="adorsys GmbH & Co. KG" \
       org.label-schema.build-date=""
 
 ARG RUSH_VERSION=0.4.2
-ARG MAVEN_VERSION=3.8.1
+ARG MAVEN_VERSION=3.8.4
 
-# https://github.com/carlossg/docker-maven/blob/master/jdk-8/Dockerfile#L5
-ARG MAVEN_SHA=0ec48eb515d93f8515d4abe465570dfded6fa13a3ceb9aab8031428442d9912ec20f066b2afbf56964ffe1ceb56f80321b50db73cf77a0e2445ad0211fb8e38d
-ARG NODE_DEFAULT_VERSION=10
+# https://github.com/carlossg/docker-maven/blob/master/openjdk-17/Dockerfile
+ARG MAVEN_SHA=a9b2d825eacf2e771ed5d6b0e01398589ac1bfa4171f36154d1b5787879605507802f699da6f7cfc80732a5282fd31b28e4cd6052338cbef0fa1358b48a5e3c8
+ARG NODE_DEFAULT_VERSION=12
 
 ENV HOME=/tmp \
     LC_ALL=C.UTF-8 \
@@ -74,7 +74,7 @@ RUN set -euo pipefail \
         iproute zip unzip python38 bzip2 git-core gcc-c++ make findutils sudo \
         python38-lxml \
         google-chrome-stable libXt libX11-xcb libXScrnSaver dbus-glib \
-        java-1.8.0-openjdk-devel java-11-openjdk-devel \
+        java-1.8.0-openjdk-devel java-11-openjdk-devel java-17-openjdk-devel \
         docker-ce-cli \
         binutils tar \
     && microdnf --noplugins clean all -y && rm -rf /var/cache/yum \
@@ -97,12 +97,10 @@ RUN set -euo pipefail \
     && (mkdir -p "${NVM_DIR}" && cd "${NVM_DIR}" \
       && curl "https://raw.githubusercontent.com/creationix/nvm/master/install.sh" | bash \
       && rm -rf .git test \
-      && echo -e "npm@6\nyarn" > default-packages \
+      && echo -e "npm\nyarn" > default-packages \
       && . "${NVM_DIR}/nvm.sh" \
-      && nvm install 10 \
       && nvm install 12 \
       && nvm install 14 \
-      && echo -e "npm@7\nyarn" > default-packages \
       && nvm install 16 \
       && nvm cache clear \
       && nvm alias default ${NODE_DEFAULT_VERSION} \
@@ -115,6 +113,7 @@ RUN set -euo pipefail \
       # Less secure then git clone ... bash install.sh ?
       && curl -fsSL "https://github.com/shyiko/jabba/raw/master/install.sh" | bash \
       && . "${JABBA_HOME}/jabba.sh" \
+      && jabba link system@1.17 /usr/lib/jvm/java-17 \
       && jabba link system@1.11 /usr/lib/jvm/java-11 \
       && jabba link system@1.8 /usr/lib/jvm/java-1.8.0 \
       && jabba alias default system@1.8 \
