@@ -30,7 +30,7 @@ ARG MAVEN_VERSION=3.8.4
 
 # https://github.com/carlossg/docker-maven/blob/master/openjdk-17/Dockerfile
 ARG MAVEN_SHA=a9b2d825eacf2e771ed5d6b0e01398589ac1bfa4171f36154d1b5787879605507802f699da6f7cfc80732a5282fd31b28e4cd6052338cbef0fa1358b48a5e3c8
-ARG NODE_DEFAULT_VERSION=10
+ARG NODE_DEFAULT_VERSION=12
 
 ENV HOME=/tmp \
     LC_ALL=C.UTF-8 \
@@ -97,12 +97,10 @@ RUN set -euo pipefail \
     && (mkdir -p "${NVM_DIR}" && cd "${NVM_DIR}" \
       && curl "https://raw.githubusercontent.com/creationix/nvm/master/install.sh" | bash \
       && rm -rf .git test \
-      && echo -e "npm@6\nyarn" > default-packages \
+      && echo -e "npm\nyarn" > default-packages \
       && . "${NVM_DIR}/nvm.sh" \
-      && nvm install 10 \
       && nvm install 12 \
       && nvm install 14 \
-      && echo -e "npm\nyarn" > default-packages \
       && nvm install 16 \
       && nvm cache clear \
       && nvm alias default ${NODE_DEFAULT_VERSION} \
