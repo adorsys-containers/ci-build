@@ -17,6 +17,9 @@
       TAG: 2-ubi-8-java-11
       DIR: 2/generated/ubi-8-java-11
     - DOCKER_IMAGE: adorsys/ci-build
+      TAG: 2-ubi-8-java-17
+      DIR: 2/generated/ubi-8-java-17
+    - DOCKER_IMAGE: adorsys/ci-build
       TAG: 2-ubi-8-node-10
       DIR: 2/generated/ubi-8-node-10
     - DOCKER_IMAGE: adorsys/ci-build
@@ -35,11 +38,17 @@
       TAG: 2-ubi-8-java-11-node-10
       DIR: 2/generated/ubi-8-java-11-node-10
     - DOCKER_IMAGE: adorsys/ci-build
+      TAG: 2-ubi-8-java-17-node-10
+      DIR: 2/generated/ubi-8-java-17-node-10
+    - DOCKER_IMAGE: adorsys/ci-build
       TAG: 2-ubi-8-java-8-node-12
       DIR: 2/generated/ubi-8-java-8-node-12
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: 2-ubi-8-java-11-node-12
       DIR: 2/generated/ubi-8-java-11-node-12
+    - DOCKER_IMAGE: adorsys/ci-build
+      TAG: 2-ubi-8-java-17-node-12
+      DIR: 2/generated/ubi-8-java-17-node-12
     - DOCKER_IMAGE: adorsys/ci-build
       TAG: 2-ubi-8-java-8-node-14
       DIR: 2/generated/ubi-8-java-8-node-14
@@ -47,8 +56,14 @@
       TAG: 2-ubi-8-java-11-node-14
       DIR: 2/generated/ubi-8-java-11-node-14
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: 2-ubi-8-java-8-node-14
+      TAG: 2-ubi-8-java-17-node-14
+      DIR: 2/generated/ubi-8-java-17-node-14
+    - DOCKER_IMAGE: adorsys/ci-build
+      TAG: 2-ubi-8-java-8-node-16
       DIR: 2/generated/ubi-8-java-8-node-16
     - DOCKER_IMAGE: adorsys/ci-build
-      TAG: 2-ubi-8-java-11-node-14
+      TAG: 2-ubi-8-java-11-node-16
       DIR: 2/generated/ubi-8-java-11-node-16
+    - DOCKER_IMAGE: adorsys/ci-build
+      TAG: 2-ubi-8-java-17-node-16
+      DIR: 2/generated/ubi-8-java-17-node-16

@@ -50,10 +50,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
       && chmod +x /usr/local/bin/jq \
     )
 
-ARG MAVEN_VERSION=3.8.1
+ARG MAVEN_VERSION=3.8.4
 
-# https://github.com/carlossg/docker-maven/blob/master/jdk-8/Dockerfile#L5
-ARG MAVEN_SHA=0ec48eb515d93f8515d4abe465570dfded6fa13a3ceb9aab8031428442d9912ec20f066b2afbf56964ffe1ceb56f80321b50db73cf77a0e2445ad0211fb8e38d
+# https://github.com/carlossg/docker-maven/blob/master/openjdk-17/Dockerfile
+ARG MAVEN_SHA=a9b2d825eacf2e771ed5d6b0e01398589ac1bfa4171f36154d1b5787879605507802f699da6f7cfc80732a5282fd31b28e4cd6052338cbef0fa1358b48a5e3c8
 
 RUN microdnf --noplugins install --nodocs -y java-11-openjdk-devel \
   && ( mkdir -p "${MAVEN_HOME}" \
